@@ -17,7 +17,8 @@ def send_notification(
         message: str, 
         message_unformatted: str = None,
         route: str = None,
-        room_id: str = None
+        room_id: str = None,
+        url: str = None
     ):
     """Send a notifcation to the Quigley Api. This requires QUIGLEY_API_BASIC_AUTH env var to be
     set.
@@ -32,7 +33,12 @@ def send_notification(
     if not BASIC_AUTH:
         print("ERROR: Missing env var: QUIGLEY_API_BASIC_AUTH")
         return False
-    API_URL = "https://api.alix.lol"
+
+    if url:
+        API_URL = url
+    else:
+        API_URL = "https://api.alix.lol"
+
     if not route:
         route = "notify"
     headers = {
@@ -41,7 +47,8 @@ def send_notification(
     }
     data = {
         "message": message_unformatted,
-        "message_formatted": message
+        "message_formatted": message,
+        "room_id": room_id
     }
     response = requests.post(
         "%s/%s" % (API_URL, route),
@@ -53,6 +60,7 @@ def send_notification(
         return False
     else:
         logging.info("Notification sent successfully: %s response.json()")
+        print(response.json())
         return True
 
 
