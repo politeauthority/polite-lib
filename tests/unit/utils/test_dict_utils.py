@@ -37,7 +37,7 @@ class TestUtilsDictUtils:
             }
         }
         assert "shit" == dict_tools.key_with_value(data, "some")
-        assert {"details":  1, "empty": None} == dict_tools.key_with_value(data, "more.complicated")
+        assert {"details": 1, "empty": None} == dict_tools.key_with_value(data, "more.complicated")
         assert not dict_tools.key_with_value(data, "more.complicated.empty")
         assert not dict_tools.key_exists(data, "nonexistant")
 

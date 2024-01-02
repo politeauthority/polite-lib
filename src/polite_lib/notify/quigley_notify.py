@@ -14,12 +14,12 @@ BASIC_AUTH = os.environ.get("QUIGLEY_API_BASIC_AUTH")
 
 
 def send_notification(
-        message: str, 
-        message_unformatted: str = None,
-        route: str = None,
-        room_id: str = None,
-        url: str = None
-    ):
+    message: str, 
+    message_unformatted: str = None,
+    route: str = None,
+    room_id: str = None,
+    url: str = None
+) -> bool:
     """Send a notifcation to the Quigley Api. This requires QUIGLEY_API_BASIC_AUTH env var to be
     set.
 

@@ -5,9 +5,6 @@
     Tests File: polite-lib/src/polite-lib/utils/xlate.py
 
 """
-from datetime import datetime
-
-import arrow
 from pytest import raises
 
 from polite_lib.utils import xlate
