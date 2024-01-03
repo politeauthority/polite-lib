@@ -121,4 +121,24 @@ def from_epoch(epoch_time: int) -> arrow.arrow.Arrow:
     return arrow.get(datetime.fromtimestamp(epoch_time))
 
 
+def time_diff(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) -> int:
+    """Get the difference in seconds between to Arrow dates in seconds."""
+    diff = end_time - start_time
+    return diff.seconds
+
+
+def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) -> str:
+    """Get the difference in seconds between to Arrow dates in a human readable format.
+    @todo: Add more time cutts. Maybe create a decimal to base 60 for remainders.
+    """
+    diff_sec = time_diff(start_time, end_time)
+    if diff_sec < 120:
+        return f"{diff_sec} seconds"
+    elif diff_sec < 3600:
+        diff_mins = str(round(diff_sec / 60, 0))[-2]
+        return f"{diff_mins} minutes"
+    else:
+        diff_mins = str(round(diff_sec / 60, 0))[-2]
+        return f"{diff_mins} minutes"
+
 # End File: polite-lib/src/polite-lib/utils/date_utils.py
