@@ -43,7 +43,7 @@ class TestUtilsDictUtils:
 
     def test__drop_keys(self):
         """
-        :method: dict_utils.test__drop_keys()
+        :method: dict_utils.drop_keys()
         """
         data = {
             "some": "shit",
@@ -55,5 +55,21 @@ class TestUtilsDictUtils:
             }
         }
         assert "more" not in dict_tools.drop_keys(data, ["more"])
+
+    def test__remove_all_keys_except(self):
+        """
+        :method: dict_utils.remove_all_keys_except()
+        """
+        data = {
+            "some": "shit",
+            "more": {
+                "complicated": {
+                    "details": 1,
+                    "empty": None
+                }
+            }
+        }
+        assert "more" not in dict_tools.remove_all_keys_except(data, ["some"])
+        assert "some" in dict_tools.remove_all_keys_except(data, ["some"])
 
 # End File: polite-lib/test/unit/utils/test_dict_utils.py

@@ -44,4 +44,13 @@ def drop_keys(the_dict: dict, the_keys: list) -> dict:
     return new_dict
 
 
+def remove_all_keys_except(the_dict: dict, the_keeps: list) -> list:
+    """Remove all keys from a dict except for the ones requested."""
+    ret_dict = {}
+    for the_keep in the_keeps:
+        if the_keep in the_dict:
+            ret_dict[the_keep] = the_dict[the_keep]
+    return ret_dict
+
+
 # End File: polite-lib/src/polite-lib/utils/dict_tools.py

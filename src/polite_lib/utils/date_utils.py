@@ -122,7 +122,9 @@ def from_epoch(epoch_time: int) -> arrow.arrow.Arrow:
 
 
 def time_diff(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) -> int:
-    """Get the difference in seconds between to Arrow dates in seconds."""
+    """Get the difference in seconds between to Arrow dates in seconds.
+    :unit-test: TestDateUtils::test__time_diff
+    """
     diff = end_time - start_time
     return diff.seconds
 
@@ -130,15 +132,21 @@ def time_diff(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) -> int
 def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) -> str:
     """Get the difference in seconds between to Arrow dates in a human readable format.
     @todo: Add more time cutts. Maybe create a decimal to base 60 for remainders.
+    :unit-test: TestDateUtils::test__time_diff_human
     """
     diff_sec = time_diff(start_time, end_time)
     if diff_sec < 120:
         return f"{diff_sec} seconds"
-    elif diff_sec < 3600:
-        diff_mins = str(round(diff_sec / 60, 0))[-2]
+    elif diff_sec < 3600 and diff_sec >= 5400:
+        diff_mins = str(round(diff_sec / 60, 0))[:-2]
         return f"{diff_mins} minutes"
+    # elif diff_sec > 5400:
+    #     diff_hours = str(round(diff_sec / 3600, 2))
+    #     print("here")
+    #     return f"{diff_hours} hours"
     else:
-        diff_mins = str(round(diff_sec / 60, 0))[-2]
+        diff_mins = str(round(diff_sec / 60, 0))[:-2]
         return f"{diff_mins} minutes"
+
 
 # End File: polite-lib/src/polite-lib/utils/date_utils.py

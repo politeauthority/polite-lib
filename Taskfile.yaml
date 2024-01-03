@@ -5,10 +5,11 @@ tasks:
     cmds:
       - |
         rm -rf /opt/homebrew/lib/python3.11/site-packages/polite-lib*
-        rm -rf /opt/homebrew/lib/python3.11/site-packages/polite-lib*
         cd src
-        python3 setup.py build
+        rm -rf build/
+        rm -rf dist/
+        # pip install .
         python3 setup.py install
         rm -rf build/
         rm -rf dist/
-        rm -rf polite_lib.egg-info/
+

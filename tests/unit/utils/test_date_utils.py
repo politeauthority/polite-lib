@@ -1,6 +1,6 @@
 """
     Polite Lib
-    Date Utils
+    Test Date Utils
     Tests File: polite-lib/src/polite-lib/utils/date_utils.py
 
 """
@@ -11,7 +11,7 @@ import arrow
 from polite_lib.utils import date_utils
 
 
-class TestSharedUtilsDateUtils:
+class TestDateUtils:
 
     def test__now(self):
         """
@@ -70,5 +70,25 @@ class TestSharedUtilsDateUtils:
         :method: date_util.from_epoch()
         """
         assert isinstance(date_utils.from_epoch(1703347823), arrow.arrow.Arrow)
+
+    def test__time_diff(self):
+        """Test that we can get an Arrow object from an epoch time.
+        :method: date_util.time_diff()
+        """
+        start = arrow.get("2024-01-03T15:53:49Z")
+        end = arrow.get("2024-01-03T15:55:04Z")
+        assert 75 == date_utils.time_diff(start, end)
+
+    def test__time_diff_human(self):
+        """Test that we can get an Arrow object from an epoch time.
+        :method: date_util.time_diff_human()
+        """
+        start = arrow.get("2024-01-03T15:53:49Z")
+        end_1 = arrow.get("2024-01-03T15:55:04Z")
+        end_2 = arrow.get("2024-01-03T16:55:04Z")
+        end_3 = arrow.get("2024-01-03T18:04:04Z")
+        assert "75 seconds" == date_utils.time_diff_human(start, end_1)
+        assert "61 minutes" == date_utils.time_diff_human(start, end_2)
+        assert "2.17 hours'" == date_utils.time_diff_human(start, end_3)
 
 # End File: cver/tests/unit/shared/utils/test_date_utils.py
