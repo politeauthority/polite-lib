@@ -8,11 +8,11 @@
 from . import xlate
 
 
-def anchor(anchor: str, title: str = None) -> str:
+def anchor(url: str, title: str = None) -> str:
     """Create an anchor link in html with a given anchor and title string to use."""
     if not title:
         title = anchor
-    return '<a href="%s">%s</a>' % (anchor, title)
+    return '<a href="%s">%s</a>' % (url, title)
 
 
 def strip_markup(original: str) -> str:
