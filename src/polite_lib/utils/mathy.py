@@ -5,6 +5,7 @@
 
 """
 
+
 def percentize(part: int, whole: int, round_int: int = 1) -> float:
     """Get the percent value that a part is from a whole.
     :unit-test: TestSharedUtilMisc:: test__percentize

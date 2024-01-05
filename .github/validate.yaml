@@ -1,0 +1,58 @@
+name: Validate
+
+on:
+  push:
+    branches: ["stage"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: self-hosted
+    container:
+      image: harbor.squid-ink.us/politeauthority/polite-cicd:${{ vars.CICD_VERSION }}
+      credentials:
+        username: ${{ vars.HARBOR_USER }}
+        password: ${{ secrets.HARBOR_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+      - uses: docker/login-action@v2
+        with:
+          registry: harbor.squid-ink.us
+          username: ${{ vars.HARBOR_USER }}
+          password: ${{ secrets.HARBOR_PASSWORD }}
+      - name: Build Container
+        run: |
+          echo "Run Build"
+          cd src
+          pip3 install -r requirements.txt
+          pip3 install .
+      - name: Push Container
+        run: |
+          IMAGE_ID=$(docker images --filter "reference=quigley-api" --format "{{.ID}}")
+          docker tag ${IMAGE_ID} harbor.squid-ink.us/politeauthority/quigley-api:stage-latest
+          docker push harbor.squid-ink.us/politeauthority/quigley-api:stage-latest
+          echo "# Docker Build" >> $GITHUB_STEP_SUMMARY
+          echo "**Built:** harbor.squid-ink.us/politeauthority/quigley-api:stage-latest" >> $GITHUB_STEP_SUMMARY
+
+  test:
+    runs-on: self-hosted
+    container:
+      image: harbor.squid-ink.us/politeauthority/polite-cicd:${{ vars.CICD_VERSION }}
+      credentials:
+        username: ${{ vars.HARBOR_USER }}
+        password: ${{ secrets.HARBOR_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+      - name: Validate Kustomize
+        run: |
+          kustomize build kubernetes-manifests/envs/prod
+          kustomize build kubernetes-manifests/envs/dev
+
+# End File: quigley-api/.github/workflows/push-stage.yaml

@@ -9,7 +9,7 @@ import glom
 
 def key_exists(the_dict: dict, the_path: str) -> bool:
     """Check that a dict key exists in a dictionary, by the dictionary key path, using dot notation.
-    :unit-test: test_dict_utils::test__key_exists
+    :unit-test: TestDictUtils::test__key_exists
     """
     try:
         glom.glom(the_dict, the_path)
@@ -21,7 +21,7 @@ def key_exists(the_dict: dict, the_path: str) -> bool:
 def key_with_value(the_dict: dict, the_path: str):
     """Provide the value from a dictionary key if it exists, checking that it has a value that is
     not a None type.
-    :unit-test: test_dict_utils::test__key_with_value
+    :unit-test: TestDictUtils::test__key_with_value
     """
     try:
         found = glom.glom(the_dict, the_path)
@@ -35,7 +35,7 @@ def key_with_value(the_dict: dict, the_path: str):
 
 def drop_keys(the_dict: dict, the_keys: list) -> dict:
     """Drop the specified keys from a dict if they exist in the dictionary.
-    :unit-test: test_dict_utils::test__drop_keys
+    :unit-test: TestDictUtils::test__drop_keys
     """
     new_dict = {}
     for index, values in the_dict.items():
@@ -45,7 +45,9 @@ def drop_keys(the_dict: dict, the_keys: list) -> dict:
 
 
 def remove_all_keys_except(the_dict: dict, the_keeps: list) -> list:
-    """Remove all keys from a dict except for the ones requested."""
+    """Remove all keys from a dict except for the ones requested.
+    :unit-test: TestDictUtils::test__remove_all_keys_except
+    """
     ret_dict = {}
     for the_keep in the_keeps:
         if the_keep in the_dict:

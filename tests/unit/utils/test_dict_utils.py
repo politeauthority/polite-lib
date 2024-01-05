@@ -5,7 +5,7 @@
 from polite_lib.utils import dict_tools
 
 
-class TestUtilsDictUtils:
+class TestDictUtils:
 
     def test__key_exists(self):
         """
