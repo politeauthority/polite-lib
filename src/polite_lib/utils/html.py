@@ -25,4 +25,17 @@ def strip_markup(original: str) -> str:
     return stripped
 
 
+def table_from_dict(the_dict: dict, t_format=["bold_key"]) -> str:
+    """Create a vertical html table from a dictonary."""
+    if not the_dict:
+        return ""
+    table = "<table>"
+    for key, value in the_dict.items():
+        key_print = key
+        if "bold_key" in t_format:
+            key_print = "<b>%s</b>" % key_print
+        table += "<tr><td>%s</td><td>%s</td></tr>" % (key_print, str(value))
+    table += "</table>"
+    return table
+
 # End File: polite-lib/src/polite-lib/utils/html.py
