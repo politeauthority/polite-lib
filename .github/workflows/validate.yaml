@@ -21,14 +21,12 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
 
-      - name: Set up Python 3.10
-        if: steps.changes.outputs.src == 'true'
+      - name: Set up Python 3.11
         uses: actions/setup-python@v3
         with:
           python-version: "3.11"
 
       - name: Install Dependencies
-        if: steps.changes.outputs.src == 'true'
         run: |
           python3 -m pip install --upgrade pip
           pip install -r src/requirements.txt
@@ -40,5 +38,10 @@ jobs:
           cd src/
           python3 setup.py build
           python3 setup.py install 
+
+      - name: Run Unit Tests
+        run: |
+          pip install -r tests/requirements.txt
+          pytest tests/unit
 
 # End File: polite-lib/.github/workflows/validate.yaml
