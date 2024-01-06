@@ -26,10 +26,17 @@ jobs:
           python3 -m pip install --upgrade pip --break-system-packages
           pip install -r src/requirements.txt --break-system-packages
 
+      - name: Source Linter
+        run: |
+          flake8 src/cver --config=src/flake8 --count --show-source --statistics
+
+      - name: Test Linter
+        run: |
+          flake8 tests/ --config=src/flake8 --count --show-source --statistics
+
       - name: Build Polite-Lib
         run: |
           echo "Run Build"
-          echo "WHO AM I: $(whoami)"
           cd src/
           python3 setup.py build
           python3 setup.py install 
@@ -37,6 +44,11 @@ jobs:
       - name: Run Unit Tests
         run: |
           pip install -r tests/requirements.txt --break-system-packages
-          pytest tests/unit
+          pytest --cov=polite_lib tests/unit
+          pytest --cov=polite_lib tests/unit > coverage.txt
+          contents=$(cat coverage.txt)
+          total_line=$(grep "^TOTAL" <<< "$contents")
+          percentage=$(grep -o '\d\{2\}%' <<< "$total_line")
+          echo "**Test Coverage:** ${COVERAGE}" >> $GITHUB_STEP_SUMMARY
 
 # End File: polite-lib/.github/workflows/validate.yaml

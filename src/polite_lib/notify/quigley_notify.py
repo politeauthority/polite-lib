@@ -14,7 +14,7 @@ BASIC_AUTH = os.environ.get("QUIGLEY_API_BASIC_AUTH")
 
 
 def send_notification(
-    message: str, 
+    message: str,
     message_unformatted: str = None,
     route: str = None,
     room_id: str = None,
@@ -26,7 +26,7 @@ def send_notification(
     :param message: (str) Message to be sent, this can contain html.
     :param message_unformatted: (str) message to be sent, this will show up in push notifications
         and shouldnt be formated.
-    :param room_id: (str) The full url for the Matrix room to send the message. 
+    :param room_id: (str) The full url for the Matrix room to send the message.
             Note: the bot must be invited and accepted the room invite.
             Example: !WVaUYDOloEvKklWuhG:squid-ink.us
     """
@@ -54,7 +54,7 @@ def send_notification(
         "%s/%s" % (API_URL, route),
         data=json.dumps(data),
         headers=headers)
-    
+
     if response.status_code not in [200, 201]:
         logging.error("Error sending notification: %s" % response.text)
         return False
