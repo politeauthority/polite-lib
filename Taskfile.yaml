@@ -1,7 +1,7 @@
 version: '3'
 
 tasks:
-  build-polite-lib:
+  build:
     cmds:
       - |
         rm -rf /opt/homebrew/lib/python3.11/site-packages/polite_lib*
@@ -14,8 +14,19 @@ tasks:
         rm -rf build/
         rm -rf dist/
         rm -rf src/polite_lib.egg-info
-  remove-polite-lib:
+  remove:
     cmds:
       - |
         rm -rf /opt/homebrew/lib/python3.11/site-packages/polite_lib*
         rm -rf src/polite_lib.egg-info
+  test:
+    cmds:
+      - |
+        pytest --cov=polite_lib tests/unit
+  pre-commit:
+    cmds:
+      - task: build
+      - task: test
+      - |
+        echo "pre-commit passed!"
+    silent: true
