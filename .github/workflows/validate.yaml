@@ -47,7 +47,7 @@ jobs:
           pytest --cov=polite_lib tests/unit
           pytest --cov=polite_lib tests/unit > coverage.txt
           total_line=$(cat coverage.txt | grep "^TOTAL")
-          percentage=$(grep -o '\d\{2\}%' <<< "$total_line")
+          percentage=$(echo $total_line | grep -o '\d\{2\}%')
           echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
 
 # End File: polite-lib/.github/workflows/validate.yaml
