@@ -26,10 +26,10 @@ jobs:
       #   with:
       #     python-version: "3.11"
 
-      # - name: Install Dependencies
-      #   run: |
-      #     python3 -m pip install --upgrade pip
-      #     pip install -r src/requirements.txt
+      - name: Install Dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r src/requirements.txt --break-system-packages
 
       - name: Build Polite-Lib
         run: |
@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          pip install -r tests/requirements.txt
+          pip install -r tests/requirements.txt --break-system-packages
           pytest tests/unit
 
 # End File: polite-lib/.github/workflows/validate.yaml
