@@ -36,8 +36,10 @@ jobs:
       - name: Build Polite-Lib
         run: |
           echo "Run Build"
+          echo "WHO AM I: $(whoami)"
           cd src/
           python3 setup.py build
+          python3 setup.py install
           pip install .
 
 # End File: polite-lib/.github/workflows/validate.yaml
