@@ -89,6 +89,6 @@ class TestDateUtils:
         end_3 = arrow.get("2024-01-03T18:04:04Z")
         assert "75 seconds" == date_utils.time_diff_human(start, end_1)
         assert "61 minutes" == date_utils.time_diff_human(start, end_2)
-        assert "2.17 hours'" == date_utils.time_diff_human(start, end_3)
+        assert "130 minutes" == date_utils.time_diff_human(start, end_3)
 
 # End File: cver/tests/unit/shared/utils/test_date_utils.py
