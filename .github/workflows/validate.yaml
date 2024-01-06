@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade pip --break-system-packages
           pip install -r src/requirements.txt --break-system-packages
 
       - name: Build Polite-Lib
