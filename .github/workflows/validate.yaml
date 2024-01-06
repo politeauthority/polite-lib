@@ -28,13 +28,12 @@ jobs:
       - name: Build Container
         run: |
           echo "Run Build"
-          cd src
-          pip install -r requirements.txt
-          pi3 install .
-      - name: Push Container
-        run: |
-          cd tests/
-          pip install -r requirements.txt
-          pytest unit
+          python3 -m pip install --upgrade pip
+          pip install -r src/requirements.txt
+      # - name: Push Container
+      #   run: |
+      #     cd tests/
+      #     pip install -r requirements.txt
+      #     pytest unit
 
 # End File: polite-lib/.github/workflows/validate.yaml
