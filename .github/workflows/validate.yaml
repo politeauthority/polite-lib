@@ -33,15 +33,11 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r src/requirements.txt
 
-      # - name: Build Container
-      #   run: |
-      #     echo "Run Build"
-      #     python3 -m pip install --upgrade pip
-      #     pip install -r src/requirements.txt
-      # - name: Push Container
-      #   run: |
-      #     cd tests/
-      #     pip install -r requirements.txt
-      #     pytest unit
+      - name: Build Polite-Lib
+        run: |
+          echo "Run Build"
+          cd src/
+          python3 setup.py build
+          pip install .
 
 # End File: polite-lib/.github/workflows/validate.yaml
