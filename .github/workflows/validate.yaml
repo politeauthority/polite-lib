@@ -28,7 +28,7 @@ jobs:
 
       - name: Source Linter
         run: |
-          flake8 src/cver --config=src/flake8 --count --show-source --statistics
+          flake8 src/polite_lib --config=src/flake8 --count --show-source --statistics
 
       - name: Test Linter
         run: |
