@@ -18,7 +18,7 @@ class TestUtilsConvert:
         size = 4537715000
         result = convert.bytes_to_human(size)
         expected = "4.23 GB"
-        assert expected == result 
+        assert expected == result
 
 
 # End File: polite-lib/test/unit/utils/convert.py

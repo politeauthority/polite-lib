@@ -11,7 +11,7 @@ from . import xlate
 def anchor(url: str, title: str = None) -> str:
     """Create an anchor link in html with a given anchor and title string to use."""
     if not title:
-        title = anchor
+        title = url
     return '<a href="%s">%s</a>' % (url, title)
 
 
