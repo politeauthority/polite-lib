@@ -26,10 +26,10 @@ jobs:
       #   with:
       #     python-version: "3.11"
 
-      - name: Install Dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install -r src/requirements.txt
+      # - name: Install Dependencies
+      #   run: |
+      #     python3 -m pip install --upgrade pip
+      #     pip install -r src/requirements.txt
 
       - name: Build Polite-Lib
         run: |
