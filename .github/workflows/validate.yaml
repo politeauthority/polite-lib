@@ -46,9 +46,8 @@ jobs:
           pip install -r tests/requirements.txt --break-system-packages
           pytest --cov=polite_lib tests/unit
           pytest --cov=polite_lib tests/unit > coverage.txt
-          contents=$(cat coverage.txt)
-          total_line=$(grep "^TOTAL" <<< "$contents")
+          total_line=$(cat coverage.txt | grep "^TOTAL)
           percentage=$(grep -o '\d\{2\}%' <<< "$total_line")
-          echo "**Test Coverage:** ${COVERAGE}" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
 
 # End File: polite-lib/.github/workflows/validate.yaml
