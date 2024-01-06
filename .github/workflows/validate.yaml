@@ -46,7 +46,7 @@ jobs:
           pip install -r tests/requirements.txt --break-system-packages
           pytest --cov=polite_lib tests/unit
           pytest --cov=polite_lib tests/unit > coverage.txt
-          total_line=$(cat coverage.txt | grep "^TOTAL)
+          total_line=$(cat coverage.txt | grep "^TOTAL")
           percentage=$(grep -o '\d\{2\}%' <<< "$total_line")
           echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
 
