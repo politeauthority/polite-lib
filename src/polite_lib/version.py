@@ -4,6 +4,6 @@
 
 """
 
-version = "0.0.2"
+version = "0.0.3"
 
 # End File: polite-lib/src/polite_lib/version.py
