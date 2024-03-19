@@ -2,3 +2,4 @@ arrow==1.2.2
 glom==20.11.0
 flake8==6.0.0
 requests==2.31.0
+rich==13.7.1
