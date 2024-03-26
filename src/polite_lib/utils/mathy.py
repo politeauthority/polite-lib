@@ -24,4 +24,13 @@ def percent_invert(percentage: float) -> float:
     diff = 100 - percentage
     return diff
 
+
+def diff_nums(number_one, number_two) -> float:
+    """Get the diffence between two numbers."""
+    if number_one > number_two:
+        return number_one - number_two
+    else:
+        return number_two - number_one
+
+
 # End File: polite-lib/src/polite_lib/utils/mathy.py

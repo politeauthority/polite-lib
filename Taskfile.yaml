@@ -9,11 +9,8 @@ tasks:
         cd src
         rm -rf build/
         rm -rf dist/
-        # pip install .
-        python3 setup.py install
-        rm -rf build/
-        rm -rf dist/
-        rm -rf src/polite_lib.egg-info
+        pip install .
+
   remove:
     cmds:
       - |
@@ -23,6 +20,7 @@ tasks:
     cmds:
       - |
         pytest --cov=polite_lib tests/unit
+
   pre-commit:
     cmds:
       - task: build
