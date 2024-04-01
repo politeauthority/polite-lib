@@ -149,4 +149,16 @@ def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) 
         return f"{diff_mins} minutes"
 
 
+def elsapsed_time_human(timespent: float) -> str:
+    """Get a human format of an elapse time value. Input will likely come from a TimeDelta objet,
+    supplying just the seconds difference.
+    """
+    if timespent <= 120:
+        return '%s seconds' % round(timespent, 0)
+    if timespent >= 120 <= 5400:
+        return '%s minutes' % round(timespent / 60, 0)
+    else:
+        return '%s hours' % round(timespent / 3600, 2)
+
+
 # End File: polite-lib/src/polite-lib/utils/date_utils.py
