@@ -13,7 +13,9 @@ from rich.table import Table
 
 def fmt_value(thing) -> str:
     """Rich tables do not like values that are not strings."""
-    if thing == 0:
+    if isinstance(list, thing):
+        return ", ".join(thing)
+    elif thing == 0:
         return str(0)
     if not thing:
         return ""
@@ -37,6 +39,25 @@ def key_value_table(data: dict, title: str = None):
             fmt_value(key),
             fmt_value(value))
     return table
+
+
+# def key_value_financial_table(data: dict, title: str = None):
+#     """Create a Rich table with 2 columns. The first column as the key, the second column as the 
+#     value.
+#     """
+#     if not data:
+#         logging.warning("Rich Fmt helper given no data")
+#         return False
+#     table = Table(title=fmt_value(title))
+#     table.add_column("Key", justify="left", no_wrap=True)
+#     table.add_column("Value", justify="right", )
+#     for key, value in data.items():
+#         if isinstance(value, float) or isinstance(value, Decimal):
+#             value = value
+#         table.add_row(
+#             fmt_value(key),
+#             fmt_value(value))
+#     return table
 
 
 def rows_table(rows: list, title: str = None):

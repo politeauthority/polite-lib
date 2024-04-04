@@ -23,6 +23,13 @@ def add_commas(value) -> str:
     return formatted_value
 
 
+def fmt_num(value, round_to: int = 2) -> str:
+    if not value:
+        return ""
+    number_value = add_commas(value)
+    return number_value
+
+
 def fmt_currency(value: float, round_to: int = 2) -> str:
     """Format a float value to a USD currency representation."""
     if not value:
