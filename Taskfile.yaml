@@ -4,12 +4,12 @@ tasks:
   build:
     cmds:
       - |
-        rm -rf /opt/homebrew/lib/python3.11/site-packages/polite_lib*
+        rm -rf /opt/homebrew/lib/python3.10/site-packages/polite_lib*
         rm -rf src/polite_lib.egg-info
         cd src
         rm -rf build/
         rm -rf dist/
-        pip install .
+        python3.10 -m pip install .
 
   remove:
     cmds:
@@ -18,8 +18,9 @@ tasks:
         rm -rf src/polite_lib.egg-info
   test:
     cmds:
+      - task: build
       - |
-        pytest --cov=polite_lib tests/unit
+        pytest -s --cov=polite_lib tests/unit
 
   pre-commit:
     cmds:
@@ -28,3 +29,8 @@ tasks:
       - |
         echo "pre-commit passed!"
     silent: true
+
+  # activate-env:
+  #   cmds:
+  #     - |
+  #       source plib/bin/activate

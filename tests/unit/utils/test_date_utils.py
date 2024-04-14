@@ -55,6 +55,13 @@ class TestDateUtils:
         date_str = "2023-09-29 21:30:45 +00:00"
         assert isinstance(date_utils.date_from_json(date_str), arrow.arrow.Arrow)
 
+    def test__from_str(self):
+        """
+        :method: date_utils.from_str()
+        """
+        assert not date_utils.from_str(None)
+        assert not date_utils.from_str('2024-041-01 12:00:00')
+
     def test__interval_ready(self):
         """Test that we get the correct bool value from a datetime that is passed the interval
         setting.
@@ -90,5 +97,14 @@ class TestDateUtils:
         assert "75 seconds" == date_utils.time_diff_human(start, end_1)
         assert "61 minutes" == date_utils.time_diff_human(start, end_2)
         assert "130 minutes" == date_utils.time_diff_human(start, end_3)
+
+    def test__elsapsed_time_human(self) -> bool:
+        """
+        :method: date_util.elsapsed_time_human()
+        """
+        assert "1 second" == date_utils.elsapsed_time_human(1)
+        assert "52 seconds" == date_utils.elsapsed_time_human(52)
+        assert "61 seconds" == date_utils.elsapsed_time_human(61)
+        assert "61 seconds" == date_utils.elsapsed_time_human(61)
 
 # End File: cver/tests/unit/shared/utils/test_date_utils.py
