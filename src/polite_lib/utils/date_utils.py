@@ -12,8 +12,6 @@ import logging
 
 import arrow
 
-from . import mathy
-
 
 def now() -> datetime:
     """Short hand to get now as UTC.
@@ -181,38 +179,5 @@ def elsapsed_time_human(timespent: float) -> str:
         return '%s%s minutes' % (base, seconds)
     else:
         return '%s hours' % round(timespent / 3600, 2)
-
-# def base100_to_base60(num):
-#     """Converts an integer in base 100 system to a base 60 number.
-
-#     Args:
-#         num: The integer to convert.
-
-#     Returns:
-#         A string representing the base 60 equivalent of the input number.
-#     """
-
-#     if num == 0:
-#         return "0"
-#     digits = []
-#     while num > 0:
-#         digits.append(str(num % 60))
-#         num //= 60
-#     digits.reverse()
-#     return ''.join(digits)
-
-
-# def base_100_to_60(value: int) -> str:
-#     """Convert a base 100 value to a base 60 value. This is helpful for taking a decimal and
-#     returning a value which would represent seconds or minutes.
-#     """
-#     if value > 1:
-#         raise ValueError("cannot convert value %s to a a base 60" % value)
-#     value = value * 100
-#     ret = round((100 * value) / 60, 2)
-#     ret = str(ret)[:-2]
-#     if len(ret) == 1:
-#         ret = "0" + ret
-#     return ret
 
 # End File: polite-lib/src/polite-lib/utils/date_utils.py
