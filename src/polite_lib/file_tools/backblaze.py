@@ -18,27 +18,26 @@ class Backblaze:
         self.api_key = api_key
         if not api_key:
             self.api_key = os.environ.get("B2_API_KEY")
-    
+
     def connect_to_b2(self, bucket: str) -> bool:
         """Conect to the Backblaze api"""
         info = InMemoryAccountInfo()
         self.b2_api = B2Api(info)
-        self.b2_api.authorize_account("production",
+        self.b2_api.authorize_account(
+            "production",
             self.key_id,
             self.api_key)
         self.bucket = self.b2_api.get_bucket_by_name(bucket)
         return True
 
-    def upload_file(self, local_phile :str, remote_phile:str):
+    def upload_file(self, local_phile: str, remote_phile: str):
         """Upload a photo to backblaze."""
         success = self.bucket.upload_local_file(
-                local_file=local_phile,
-                file_name=remote_phile,
+            local_file=local_phile,
+            file_name=remote_phile,
         )
-        import ipdb; ipdb.set_trace()
         logging.info("Uploaded %s > %s" % (local_phile, remote_phile))
-        # public_url = "https://f001.backblazeb2.com/file/{bucket}/{remote_phile}"
-        return True
+        return success
 
-        
+
 # End File: polite-lib/src/polite-lib/file_tools/backblaze.py

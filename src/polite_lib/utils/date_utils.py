@@ -14,6 +14,7 @@ import arrow
 
 from . import mathy
 
+
 def now() -> datetime:
     """Short hand to get now as UTC.
     :unit-test: TestSharedUtilsDateUtils.test__now
@@ -156,7 +157,7 @@ def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) 
 def elsapsed_time_human(timespent: float) -> str:
     """Get a human format of an elapse time value. Input will likely come from a TimeDelta objet,
     supplying just the seconds difference.
-    :unit-test: 
+    :unit-test: TestDateUtils:
     """
     if timespent <= 120:
         if timespent == 1:
@@ -169,7 +170,15 @@ def elsapsed_time_human(timespent: float) -> str:
         unit = "minutes"
         base = round(timespent / 60, 0)
         base = str(base)[:-2]
-        return '%s minutes' % base
+        seconds = timespent % 60
+        if seconds != 0:
+            if seconds < 10:
+                seconds = ":0%s" % seconds
+            else:
+                seconds = ":%s" % seconds
+        else:
+            seconds = ""
+        return '%s%s minutes' % (base, seconds)
     else:
         return '%s hours' % round(timespent / 3600, 2)
 
