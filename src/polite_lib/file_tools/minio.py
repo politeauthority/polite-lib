@@ -47,7 +47,6 @@ class Minio:
             self.client.fput_object(
                 self.bucket, remote_phile, local_phile, content_type=content_type
             )
-            print("content type: %s" % content_type)
             logging.info("Uploaded %s > %s" % (local_phile, remote_phile))
             return True
         except S3Error as e:

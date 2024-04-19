@@ -152,23 +152,23 @@ def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) 
         return f"{diff_mins} minutes"
 
 
-def elsapsed_time_human(timespent: float) -> str:
-    """Get a human format of an elapse time value. Input will likely come from a TimeDelta objet,
+def elsapsed_time_human(timespent_seconds: float) -> str:
+    """Get a human format of an elapse time value. Input should be elapsed time in seconds.
     supplying just the seconds difference.
     :unit-test: TestDateUtils:
     """
-    if timespent <= 120:
-        if timespent == 1:
+    if timespent_seconds <= 120:
+        if timespent_seconds == 1:
             unit = "second"
         else:
             unit = "seconds"
-        rounded_value = round(timespent, 0)
+        rounded_value = round(timespent_seconds, 0)
         return f"{rounded_value} {unit}"
-    if timespent >= 120 <= 5400:
+    if timespent_seconds >= 120 <= 5400:
         unit = "minutes"
-        base = round(timespent / 60, 0)
+        base = round(timespent_seconds / 60, 0)
         base = str(base)[:-2]
-        seconds = timespent % 60
+        seconds = timespent_seconds % 60
         if seconds != 0:
             if seconds < 10:
                 seconds = ":0%s" % seconds
@@ -178,6 +178,6 @@ def elsapsed_time_human(timespent: float) -> str:
             seconds = ""
         return '%s%s minutes' % (base, seconds)
     else:
-        return '%s hours' % round(timespent / 3600, 2)
+        return '%s hours' % round(timespent_seconds / 3600, 2)
 
 # End File: polite-lib/src/polite-lib/utils/date_utils.py
