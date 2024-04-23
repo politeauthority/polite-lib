@@ -8,6 +8,9 @@
 import hashlib
 import os
 
+from polite_lib.utils import convert
+from polite_lib.utils import mathy
+
 
 def get_directory_size(directory_path: str) -> int:
     """Get the size of a directory in bytes. Will skip sym linked dirctories.
@@ -54,6 +57,26 @@ def get_hash(file_path: str) -> str:
         raise FileNotFoundError("Path does not exist: %s" % file_path)
     open_file = open(file_path, 'rb').read()
     return hashlib.md5(open_file).hexdigest()
+
+
+def get_disk_info(path_of_partion: str = "/", human: bool = False) -> dict:
+    """
+    """
+    statvfs = os.statvfs(path_of_partion)
+    ret = {
+        "file_system_size": statvfs.f_frsize * statvfs.f_blocks,
+        "file_system_free": statvfs.f_frsize * statvfs.f_bfree,
+        "file_system_available": statvfs.f_frsize * statvfs.f_bavail,
+    }
+    ret["percent_free"] = mathy.percentize(ret["file_system_free"], ret["file_system_size"])
+    ret["percent_available"] = mathy.percentize(
+        ret["file_system_available"],
+        ret["file_system_size"])
+    if human:
+        ret["file_system_size"] = convert.bytes_to_human(["file_system_size"])
+        ret["file_system_free"] = convert.bytes_to_human(["file_system_free"])
+        ret["file_system_available"] = convert.bytes_to_human(["file_system_available"])
+    return ret
 
 
 # End File: polite-lib/src/polite-lib/file_tools/file_tools.py
