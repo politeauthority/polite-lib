@@ -74,9 +74,10 @@ def get_disk_info(path_of_partion: str = "/") -> dict:
     ret["percent_available"] = mathy.percentize(
         ret["file_system_available"],
         ret["file_system_size"])
-    ret["file_system_size_human"] = convert.bytes_to_human(["file_system_size"])
-    ret["file_system_free_human"] = convert.bytes_to_human(["file_system_free"])
-    ret["file_system_available_human"] = convert.bytes_to_human(["file_system_available"])
+    # import ipdb; ipdb.set_trace()
+    # ret["file_system_size_human"] = convert.bytes_to_human(["file_system_size"])
+    # ret["file_system_free_human"] = convert.bytes_to_human(["file_system_free"])
+    # ret["file_system_available_human"] = convert.bytes_to_human(["file_system_available"])
     return ret
 
 
