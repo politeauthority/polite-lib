@@ -59,8 +59,10 @@ def get_hash(file_path: str) -> str:
     return hashlib.md5(open_file).hexdigest()
 
 
-def get_disk_info(path_of_partion: str = "/", human: bool = False) -> dict:
-    """
+def get_disk_info(path_of_partion: str = "/") -> dict:
+    """Get the details of a disk partion, including filesystem size, available bytes and free bytes.
+    The method will determine the filesystem no matter how qualified the path is, and return data in
+    both bytes and human readable sizes.
     """
     statvfs = os.statvfs(path_of_partion)
     ret = {
@@ -72,10 +74,9 @@ def get_disk_info(path_of_partion: str = "/", human: bool = False) -> dict:
     ret["percent_available"] = mathy.percentize(
         ret["file_system_available"],
         ret["file_system_size"])
-    if human:
-        ret["file_system_size"] = convert.bytes_to_human(["file_system_size"])
-        ret["file_system_free"] = convert.bytes_to_human(["file_system_free"])
-        ret["file_system_available"] = convert.bytes_to_human(["file_system_available"])
+    ret["file_system_size_human"] = convert.bytes_to_human(["file_system_size"])
+    ret["file_system_free_human"] = convert.bytes_to_human(["file_system_free"])
+    ret["file_system_available_human"] = convert.bytes_to_human(["file_system_available"])
     return ret
 
 
