@@ -1,7 +1,7 @@
 """
     Polite Lib
-    Dict Tools
-    Helpers for handling dicts
+    Html
+    Tools for writing html
 
 """
 
