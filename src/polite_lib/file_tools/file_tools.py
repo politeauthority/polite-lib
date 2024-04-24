@@ -8,8 +8,15 @@
 import hashlib
 import os
 
-from polite_lib.utils import convert
+# from polite_lib.utils import convert
 from polite_lib.utils import mathy
+
+
+def get_size(the_path: str) -> int:
+    """Get the size of a file or directory from a given path."""
+    if os.path.isdir(the_path):
+        return get_directory_size(the_path)
+    return os.path.getsize(the_path)
 
 
 def get_directory_size(directory_path: str) -> int:
