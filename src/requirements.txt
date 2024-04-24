@@ -2,7 +2,7 @@ arrow==1.2.2
 flake8==7.0.0
 b2sdk==2.1.0
 flake8==6.0.0
-glom==20.11.0
+glom==23.5.0
 minio==7.2.5
 requests==2.31.0
 rich==13.7.1
