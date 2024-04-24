@@ -20,8 +20,12 @@ tasks:
     cmds:
       - task: build
       - |
-        pytest -s --cov=polite_lib tests/unit
-
+        python3.10 -m pytest -s --cov=polite_lib tests/unit
+        FLAKE8_ERRORS=$(flake8 tests/ --config=src/flake8 --count --show-source --statistics)
+        echo $FLAKE8_ERRORS
+        # if [$FLAKE8_ERRORS = 0]; then
+        #   flake8 tests/ --config=src/flake8 --count --show-source --statistics)
+        # fi
   pre-commit:
     cmds:
       - task: build
