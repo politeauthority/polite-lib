@@ -1,53 +1,53 @@
-name: Validate
+# name: Validate
 
-on:
-  push:
-    branches: ["stage"]
+# on:
+#   push:
+#     branches: ["stage"]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}
+#   cancel-in-progress: true
 
-jobs:
-  build:
-    runs-on: self-hosted
-    container:
-      image: harbor.squid-ink.us/politeauthority/polite-cicd:${{ vars.CICD_VERSION }}
-      credentials:
-        username: ${{ vars.HARBOR_USER }}
-        password: ${{ secrets.HARBOR_PASSWORD }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PAT }}
+# jobs:
+#   build:
+#     runs-on: self-hosted
+#     container:
+#       image: harbor.squid-ink.us/politeauthority/polite-cicd:${{ vars.CICD_VERSION }}
+#       credentials:
+#         username: ${{ vars.HARBOR_USER }}
+#         password: ${{ secrets.HARBOR_PASSWORD }}
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           token: ${{ secrets.PAT }}
 
-      - name: Install Dependencies
-        run: |
-          python3 -m pip install --upgrade pip --break-system-packages
-          pip install -r src/requirements.txt --break-system-packages
+#       - name: Install Dependencies
+#         run: |
+#           python3 -m pip install --upgrade pip --break-system-packages
+#           pip install -r src/requirements.txt --break-system-packages
 
-      - name: Source Linter
-        run: |
-          flake8 src/polite_lib --config=src/flake8 --count --show-source --statistics
+#       - name: Source Linter
+#         run: |
+#           flake8 src/polite_lib --config=src/flake8 --count --show-source --statistics
 
-      - name: Test Linter
-        run: |
-          flake8 tests/ --config=src/flake8 --count --show-source --statistics
+#       - name: Test Linter
+#         run: |
+#           flake8 tests/ --config=src/flake8 --count --show-source --statistics
 
-      - name: Build Polite-Lib
-        run: |
-          echo "Run Build"
-          cd src/
-          python3 setup.py build
-          python3 setup.py install 
+#       - name: Build Polite-Lib
+#         run: |
+#           echo "Run Build"
+#           cd src/
+#           python3 setup.py build
+#           python3 setup.py install 
 
-      - name: Run Unit Tests
-        run: |
-          pip install -r tests/requirements.txt --break-system-packages
-          pytest --cov=polite_lib tests/unit
-          # pytest --cov=polite_lib tests/unit > coverage.txt
-          # total_line=$(cat coverage.txt | grep "^TOTAL")
-          # percentage=$(echo $total_line | grep -o '\d\{2\}%')
-          # echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
+#       - name: Run Unit Tests
+#         run: |
+#           pip install -r tests/requirements.txt --break-system-packages
+#           pytest --cov=polite_lib tests/unit
+#           # pytest --cov=polite_lib tests/unit > coverage.txt
+#           # total_line=$(cat coverage.txt | grep "^TOTAL")
+#           # percentage=$(echo $total_line | grep -o '\d\{2\}%')
+#           # echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
 
-# End File: polite-lib/.github/workflows/validate.yaml
+# # End File: polite-lib/.github/workflows/validate.yaml

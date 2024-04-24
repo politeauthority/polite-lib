@@ -8,6 +8,7 @@
 
 """
 from datetime import datetime
+import logging
 
 import arrow
 
@@ -93,6 +94,8 @@ def from_str(the_str: str, parse_fmt: str = None) -> arrow.arrow.Arrow:
     try:
         ret_datetime = arrow.get(the_str, parse_fmt)
     except arrow.parser.ParserError:
+        logging.warning("Could not parse date string value %s with format: %s" % (
+            the_str, parse_fmt))
         ret_datetime = None
     return ret_datetime
 
@@ -148,5 +151,33 @@ def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) 
         diff_mins = str(round(diff_sec / 60, 0))[:-2]
         return f"{diff_mins} minutes"
 
+
+def elsapsed_time_human(timespent_seconds: float) -> str:
+    """Get a human format of an elapse time value. Input should be elapsed time in seconds.
+    supplying just the seconds difference.
+    :unit-test: TestDateUtils:
+    """
+    if timespent_seconds <= 120:
+        if timespent_seconds == 1:
+            unit = "second"
+        else:
+            unit = "seconds"
+        rounded_value = round(timespent_seconds, 0)
+        return f"{rounded_value} {unit}"
+    if timespent_seconds >= 120 <= 5400:
+        unit = "minutes"
+        base = round(timespent_seconds / 60, 0)
+        base = str(base)[:-2]
+        seconds = timespent_seconds % 60
+        if seconds != 0:
+            if seconds < 10:
+                seconds = ":0%s" % seconds
+            else:
+                seconds = ":%s" % seconds
+        else:
+            seconds = ""
+        return '%s%s minutes' % (base, seconds)
+    else:
+        return '%s hours' % round(timespent_seconds / 3600, 2)
 
 # End File: polite-lib/src/polite-lib/utils/date_utils.py

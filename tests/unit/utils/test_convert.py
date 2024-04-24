@@ -15,6 +15,7 @@ class TestUtilsConvert:
         """
         :method: xlate.bytes_to_human
         """
+        assert "0B" == convert.bytes_to_human(0)
         size = 4537715000
         result = convert.bytes_to_human(size)
         expected = "4.23 GB"
