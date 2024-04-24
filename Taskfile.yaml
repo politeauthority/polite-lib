@@ -4,16 +4,13 @@ tasks:
   build:
     cmds:
       - |
-        rm -rf /opt/homebrew/lib/python3.11/site-packages/polite_lib*
+        rm -rf /opt/homebrew/lib/python3.10/site-packages/polite_lib*
         rm -rf src/polite_lib.egg-info
         cd src
         rm -rf build/
         rm -rf dist/
-        # pip install .
-        python3 setup.py install
-        rm -rf build/
-        rm -rf dist/
-        rm -rf src/polite_lib.egg-info
+        python3.10 -m pip install .
+
   remove:
     cmds:
       - |
@@ -21,8 +18,14 @@ tasks:
         rm -rf src/polite_lib.egg-info
   test:
     cmds:
+      - task: build
       - |
-        pytest --cov=polite_lib tests/unit
+        python3.10 -m pytest -s --cov=polite_lib tests/unit
+        FLAKE8_ERRORS=$(flake8 tests/ --config=src/flake8 --count --show-source --statistics)
+        echo $FLAKE8_ERRORS
+        # if [$FLAKE8_ERRORS = 0]; then
+        #   flake8 tests/ --config=src/flake8 --count --show-source --statistics)
+        # fi
   pre-commit:
     cmds:
       - task: build
@@ -30,3 +33,8 @@ tasks:
       - |
         echo "pre-commit passed!"
     silent: true
+
+  # activate-env:
+  #   cmds:
+  #     - |
+  #       source plib/bin/activate

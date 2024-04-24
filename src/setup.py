@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
-version = "0.0.2"
+from polite_lib.version import version
 
 setup(
     name="polite-lib",
@@ -12,6 +12,7 @@ setup(
     packages=[
         "polite_lib",
         "polite_lib.utils",
+	"polite_lib.file_tools",
         "polite_lib.notify",
     ],
 )
