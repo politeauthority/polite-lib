@@ -155,8 +155,14 @@ def time_diff_human(start_time: arrow.arrow.Arrow, end_time: arrow.arrow.Arrow) 
 def elsapsed_time_human(timespent_seconds: float) -> str:
     """Get a human format of an elapse time value. Input should be elapsed time in seconds.
     supplying just the seconds difference.
-    :unit-test: TestDateUtils:
+    :param timespent_seconds: (float) Number of seconds to humanize
+    :return: (str) A human readable str describing the time elapsed.
+    :unit-test: TestDateUtils::test__elsapsed_time_human
     """
+    MIN_DIV = 60
+    HOUR_DIV = 3600
+    # DAY_DIV = 86400
+    # Less than 2 minutes, return in seconds
     if timespent_seconds <= 120:
         if timespent_seconds == 1:
             unit = "second"
@@ -164,11 +170,13 @@ def elsapsed_time_human(timespent_seconds: float) -> str:
             unit = "seconds"
         rounded_value = round(timespent_seconds, 0)
         return f"{rounded_value} {unit}"
-    if timespent_seconds >= 120 <= 5400:
+
+    # Between 2 minutes and 90 minutes, return in minutes
+    elif timespent_seconds >= 121 and timespent_seconds <= 5400:
         unit = "minutes"
-        base = round(timespent_seconds / 60, 0)
+        base = round(timespent_seconds / MIN_DIV, 0)
         base = str(base)[:-2]
-        seconds = timespent_seconds % 60
+        seconds = timespent_seconds % MIN_DIV
         if seconds != 0:
             if seconds < 10:
                 seconds = ":0%s" % seconds
@@ -177,7 +185,19 @@ def elsapsed_time_human(timespent_seconds: float) -> str:
         else:
             seconds = ""
         return '%s%s minutes' % (base, seconds)
+
+    # Between 90 minutes an a day display: {H}:{M}:{S}
+    elif timespent_seconds >= 5401 and timespent_seconds <= 86400:
+        unit = "hours"
+        hours = round(timespent_seconds / HOUR_DIV, 1)
+        if hours < 10:
+            hours = str(hours)[0:1]
+        else:
+            hours = str(hours)[0]
+        minutes = round((timespent_seconds % HOUR_DIV) / MIN_DIV, 0)
+        return f"{hours}:{minutes} hours"
+
     else:
-        return '%s hours' % round(timespent_seconds / 3600, 2)
+        return '%s hours' % round(timespent_seconds / HOUR_DIV, 2)
 
 # End File: polite-lib/src/polite-lib/utils/date_utils.py

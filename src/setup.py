@@ -12,7 +12,7 @@ setup(
     packages=[
         "polite_lib",
         "polite_lib.utils",
-	"polite_lib.file_tools",
+        "polite_lib.file_tools",
         "polite_lib.notify",
     ],
 )

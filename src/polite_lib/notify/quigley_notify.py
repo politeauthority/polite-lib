@@ -13,7 +13,7 @@ import requests
 BASIC_AUTH = os.environ.get("QUIGLEY_API_BASIC_AUTH")
 
 
-def send_notification(
+def send(
     message: str,
     message_unformatted: str = None,
     route: str = None,
@@ -31,8 +31,7 @@ def send_notification(
             Example: !WVaUYDOloEvKklWuhG:squid-ink.us
     """
     if not BASIC_AUTH:
-        print("ERROR: Missing env var: QUIGLEY_API_BASIC_AUTH")
-        return False
+        raise AttributeError("Missing Quigley Api basic authentication")
 
     if url:
         API_URL = url
@@ -60,8 +59,22 @@ def send_notification(
         return False
     else:
         logging.info("Notification sent successfully: %s response.json()")
-        print(response.json())
         return True
+
+
+def send_notification(
+    message: str,
+    message_unformatted: str = None,
+    route: str = None,
+    room_id: str = None,
+    url: str = None
+) -> bool:
+    """This method will be deprecated in future versions of polite lib.
+    """
+    warning = "the send_notification method will be removed in future versions of polite-lib"
+    warning += "use send instead"
+    logging.warning(warning)
+    return send(message, message_unformatted, route, room_id, url)
 
 
 # End File: polite-lib/src/polite_lib/notify/quigley_notify.py
