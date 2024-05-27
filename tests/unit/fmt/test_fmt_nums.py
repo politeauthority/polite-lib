@@ -4,7 +4,7 @@
     Tests File: polite-lib/src/polite-lib/utils/fmt_numbers.py
 
 """
-from polite_lib.utils import fmt_nums
+from polite_lib.fmt import fmt_nums
 
 
 class TestFmtNums:

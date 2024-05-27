@@ -5,7 +5,7 @@
 
 """
 
-from . import xlate
+from ..utils import xlate
 
 
 def anchor(url: str, title: str = None) -> str:
@@ -13,6 +13,13 @@ def anchor(url: str, title: str = None) -> str:
     if not title:
         title = url
     return '<a href="%s">%s</a>' % (url, title)
+
+
+def code(the_code: str) -> str:
+    """Wrap the text in a <code> tags."""
+    if not the_code:
+        return ""
+    return f"<code>{the_code}</code>"
 
 
 def strip_markup(original: str) -> str:

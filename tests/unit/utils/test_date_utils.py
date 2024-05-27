@@ -108,5 +108,6 @@ class TestDateUtils:
         assert "61 seconds" == date_utils.elsapsed_time_human(61)
         assert "2:05 minutes" == date_utils.elsapsed_time_human(125)
         assert "90 minutes" == date_utils.elsapsed_time_human(5400)
+        assert "2:35 hours" == date_utils.elsapsed_time_human(84887)
 
 # End File: cver/tests/unit/shared/utils/test_date_utils.py

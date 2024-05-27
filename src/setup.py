@@ -13,8 +13,9 @@ setup(
         "polite_lib",
         "polite_lib.utils",
         "polite_lib.file_tools",
+        "polite_lib.fmt",
         "polite_lib.notify",
     ],
 )
 
-# End File: polite-lib/src/setup.py
+# End File: politeauthority/polite-lib/src/setup.py
