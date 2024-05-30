@@ -21,4 +21,11 @@ class TestFmtHtml:
         """
         assert fmt_html.code("Wrap this in code") == "<code>Wrap this in code</code>"
 
+    def test__strip_markup(self):
+        """Tests that we strip markup properly.
+        :method: fmt_html.code()
+        """
+        assert fmt_html.strip_markup("") == ""
+        assert fmt_html.strip_markup("hello<br>") == "hello "
+
 # End File: cver/tests/unit/shared/utils/test_fmt_html.py
