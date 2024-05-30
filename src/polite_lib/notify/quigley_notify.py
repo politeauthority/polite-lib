@@ -31,6 +31,7 @@ def send(
             Example: !WVaUYDOloEvKklWuhG:squid-ink.us
     """
     if not BASIC_AUTH:
+        logging.ciritcal("Missing QUIGLEY_BASIC_AUTH")
         raise AttributeError("Missing Quigley Api basic authentication")
 
     if url:
@@ -69,8 +70,7 @@ def send_notification(
     room_id: str = None,
     url: str = None
 ) -> bool:
-    """This method will be deprecated in future versions of polite lib.
-    """
+    """This method will be deprecated in future versions of polite lib."""
     warning = "the send_notification method will be removed in future versions of polite-lib"
     warning += "use send instead"
     logging.warning(warning)
