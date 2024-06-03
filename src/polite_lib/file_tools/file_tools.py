@@ -6,6 +6,9 @@
 
 """
 import hashlib
+# import logging
+# import subprocess
+# import tempfile
 import os
 
 # from polite_lib.utils import convert
@@ -88,4 +91,79 @@ def get_disk_info(path_of_partion: str = "/") -> dict:
     return ret
 
 
-# End File: polite-lib/src/polite-lib/file_tools/file_tools.py
+# def make_zip(
+#         path_to_zip: str,
+#         zip_path: str,
+#         encryption_pass: str = "",
+#         temp_dir: str = "",
+#         zip_to_temp_space: bool = False
+# ) -> bool:
+#     """Create a zip of a file or a directory, with optional encryption password.
+#     :param: path_to_zip: The path to zip, either a single file or a directory of files.
+#     :param zip_path: Path of the zip to be zipped.
+#     :param encryption_pass: (optional) Password to use to encrypt the zipfile.
+#     :param temp_dir: Path of the temporary storage location to use.
+#     """
+#     # Determine if we're zipping a directory or a file.
+#     if os.path.isdir(path_to_zip):
+#         logging.info(f"Zip - Path {path_to_zip} is a directory")
+#         is_dir = True
+#     else:
+#         logging.info(f"Zip - Path {path_to_zip} is a file")
+#         is_dir = False
+
+#     if not temp_dir:
+#         temp_dir = tempfile.gettempdir()
+#     logging.info(f"Using tempdir: {temp_dir}")
+
+#     # Get temp dir free space and zip space needed
+#     if not zip_to_temp_space:
+#         temp_dir_space = get_disk_info(temp_dir)
+#         zip_dir_size = get_size(path_to_zip)
+#         if temp_dir_space["file_system_free"] < zip_dir_size:
+#             logging.critical("Cannot create zip, not enough free space on temp dir.")
+#             return False
+
+#     zip_landed_dir = os.path.dirname(zip_path)
+#     zip_landed_dir_details = get_disk_info(zip_landed_dir)
+#     if zip_landed_dir_details["file_system_free"] < zip_dir_size:
+#         logging.critical("Cannot create zip, not enough free space on temp dir.")
+#         return False
+
+#     local_path = get_last_dir(zip_dir)
+#     options = "rq"
+#     password = ""
+#     if encryption_pass:
+#         options = "rqe"
+#         password = " -P %s" % encryption_pass
+#     subprocess.call('cd %s' % temp_dir_space, shell=True)
+
+#     zip_full_path = os.path.join(self.local['tmp_dir'], zip_path)
+    # start = arrow.now()
+    # cmd = "cd %s && zip -%s %s %s%s" % (
+    #     self.local['tmp_dir'],
+    #     options,
+    #     zip_full_path,
+    #     local_path,
+    #     password)
+    # print('[%s] Making zip: %s' % (arrow.now(), zip_full_path))
+    # subprocess.call(cmd, shell=True)
+    # end = arrow.now()
+    # self.time_zip = (end - start).seconds
+    # self.size_backup_zipped = convert.bytes_to_human(file_tools.get_size(zip_full_path))
+    # # self.size_backup_zipped = self._convert_size(self._get_size(zip_full_path))
+    # print("[%s] Finished zipping files in %s seconds" % (arrow.now(), self.time_zip))
+
+
+def get_last_dir(path: str):
+    """Get the last segment of a full path
+       ie: "/tmp/some-dir/some-other-dir" returns "some-other-dir"
+    """
+    if '/' not in path:
+        return path
+
+    last = path[path.rfind('/') + 1:]
+    return last
+
+
+# End File: politeauthority/polite-lib/src/polite-lib/file_tools/file_tools.py

@@ -195,6 +195,7 @@ def elsapsed_time_human(timespent_seconds: float) -> str:
         else:
             hours = str(hours)[0]
         minutes = round((timespent_seconds % HOUR_DIV) / MIN_DIV, 0)
+        minutes = str(minutes)[:-2]
         return f"{hours}:{minutes} hours"
 
     else:

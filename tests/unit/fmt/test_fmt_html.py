@@ -28,4 +28,4 @@ class TestFmtHtml:
         assert fmt_html.strip_markup("") == ""
         assert fmt_html.strip_markup("hello<br>") == "hello "
 
-# End File: cver/tests/unit/shared/utils/test_fmt_html.py
+# End File: politeauthority/polite-lib/tests/unit/fmt/test_fmt_html.py
