@@ -46,8 +46,8 @@ def send(
         "Content-Type": "application/json"
     }
     data = {
-        "message": message_unformatted,
-        "message_formatted": message,
+        "message": str(message_unformatted),
+        "message_formatted": str(message),
         "room_id": room_id
     }
     response = requests.post(

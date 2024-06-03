@@ -25,7 +25,7 @@ def fmt_value(thing) -> str:
 
 
 def key_value_table(data: dict, title: str = None):
-    """Create a Rich table with 2 columns. The first column as the key, the second column as the 
+    """Create a Rich table with 2 columns. The first column as the key, the second column as the
     value.
     """
     if not data:
@@ -42,7 +42,7 @@ def key_value_table(data: dict, title: str = None):
 
 
 # def key_value_financial_table(data: dict, title: str = None):
-#     """Create a Rich table with 2 columns. The first column as the key, the second column as the 
+#     """Create a Rich table with 2 columns. The first column as the key, the second column as the
 #     value.
 #     """
 #     if not data:
@@ -72,7 +72,7 @@ def rows_table(rows: list, title: str = None):
     data = []
     for row in rows:
         new_row = []
-        for cell in row: 
+        for cell in row:
             new_row.append(fmt_value(cell))
         data.append(new_row)
     for row in data:
