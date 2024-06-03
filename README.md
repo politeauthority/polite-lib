@@ -1,2 +1,3 @@
-# Polite Lib 0.0.8.3
-Polite Library, a collection of python tools.
+# Polite Lib 0.0.8.4
+Polite Library, a python library of commonly used tools.
+https://github.com/politeauthority/polite-lib/actions/workflows/validate.yaml/badge.svg
