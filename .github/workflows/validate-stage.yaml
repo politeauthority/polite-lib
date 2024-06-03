@@ -3,6 +3,8 @@ name: Validate Stage
 on:
   push:
     branches: ["stage"]
+  pull_request:
+    branches: ["main"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
