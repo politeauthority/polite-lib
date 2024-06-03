@@ -52,6 +52,6 @@ jobs:
 
       - name: Publish
         run: |
-          export POETRY_PYPI_TOKEN_PYPI = ${{ secrets.PYPI_TOKEN }}
+          export POETRY_PYPI_TOKEN_PYPI="${{ secrets.PYPI_TOKEN }}""
           poetry build
           poetry publish
