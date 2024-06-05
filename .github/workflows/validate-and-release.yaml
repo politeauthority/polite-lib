@@ -1,4 +1,4 @@
-name: Validate
+name: Validate and Release
 
 on:
   push:
@@ -53,6 +53,5 @@ jobs:
       - name: Publish
         run: |
           export POETRY_PYPI_TOKEN_PYPI="${{ secrets.PYPI_TOKEN }}"
-          which poetry
           /root/.local/bin/poetry build
           /root/.local/bin/poetry publish
