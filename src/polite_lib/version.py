@@ -4,6 +4,7 @@
 
 """
 
-version = "0.0.8.5"
+version = "0.0.9.2"
+
 
 # End File: politeauthority/polite-lib/src/polite_lib/version.py

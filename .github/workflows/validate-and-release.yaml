@@ -1,10 +1,8 @@
-name: Validate
+name: Validate and Release
 
 on:
   push:
-    branches: ["stage"]
-  pull_request:
-    branches: ["main", "stage"]
+    branches: ["main", "poetry2"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -51,3 +49,9 @@ jobs:
           # total_line=$(cat coverage.txt | grep "^TOTAL")
           # percentage=$(echo $total_line | grep -o '\d\{2\}%')
           # echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Publish
+        run: |
+          export POETRY_PYPI_TOKEN_PYPI="${{ secrets.PYPI_TOKEN }}"
+          /root/.local/bin/poetry build
+          /root/.local/bin/poetry publish
