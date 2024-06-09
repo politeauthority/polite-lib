@@ -63,7 +63,7 @@ def unordered_list(the_list: list) -> str:
     html = "<ul>"
     for item in the_list:
         html = "  <li>%s</li>" % item
-    html += "<ul>"
+    html += "</ul>"
     return html
 
-# End File: polite-lib/src/polite-lib/utils/fmt_html.py
+# End File: politeauthority/polite-lib/src/polite-lib/utils/fmt_html.py
