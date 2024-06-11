@@ -4,9 +4,10 @@
     A collection of tools to translate common items.
 
 """
-import re
-import json
+import base64
 import logging
+import json
+import re
 from urllib.parse import unquote, quote, quote_plus
 
 
@@ -296,4 +297,23 @@ def snake_to_camel_case(snake: str) -> str:
         camel = camel[:pos] + camel[pos].upper() + camel[pos + 1:]
     return camel
 
-# End File: cver/src/cver/shared/utils/xlate.py
+
+def base64_decode(encoded: str) -> str:
+    """A shortcut to base64 decode a string. We will assume we want an ASCII translation for now.
+    :unit-test: test__base64_decode
+    """
+    decoded = base64.b64decode(encoded)
+    return decoded.decode("ascii")
+
+
+def base64_encode(uncoded: str) -> str:
+    """A shortcut to base64 encode a string. We will assume we want an ASCII translation for now.
+    :unit-test: test__base64_encode
+    """
+    if not uncoded:
+        return ""
+    str_bytes = uncoded.encode("ascii")
+    base_bytes = base64.b64encode(str_bytes)
+    return base_bytes.decode("ascii")
+
+# End File: politeauthority/polite-lib/src/utils/xlate.py

@@ -100,3 +100,18 @@ class TestUtilsXlate:
         assert xlate.snake_to_camel_case("module") == "Module"
         assert xlate.snake_to_camel_case("my_module_is_great") == "MyModuleIsGreat"
         assert xlate.snake_to_camel_case("image_build_waiting") == "ImageBuildWaiting"
+
+    def test__base64_decode(self):
+        """Test that we can decode base64 properly.
+        :method: xlate.base64_decode()
+        """
+        assert xlate.base64_decode("c29tZXRoaW5nIHRvIGRlY29kZQ==") == "something to decode"
+
+    def test__base64_encode(self):
+        """Test that we can encode base64 properly.
+        :method: xlate.base64_encode()
+        """
+        assert xlate.base64_encode("something to encode") == "c29tZXRoaW5nIHRvIGVuY29kZQ=="
+
+
+# End File: politeauthority/polite-lib/test/unit/utils/test_xlate.py
