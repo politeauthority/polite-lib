@@ -21,5 +21,16 @@ class TestUtilsConvert:
         expected = "4.23 GB"
         assert expected == result
 
+    def test__fahrenheit_to_celcius(self):
+        """
+        :method: xlate.fahrenheit_to_celcius
+        """
+        assert convert.fahrenheit_to_celcius(100) == 37.8
 
-# End File: polite-lib/test/unit/utils/convert.py
+    def test__celcius_to_fahrenheit(self):
+        """
+        :method: xlate.celcius_to_fahrenheit
+        """
+        assert convert.celcius_to_fahrenheit(37.8) == 100
+
+# End File: politeauthority/polite-lib/test/unit/utils/convert.py
