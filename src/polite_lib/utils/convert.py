@@ -6,7 +6,6 @@
     Testing
         Unit: polite-lib/unit/utils/convert.py
 
-
 """
 import math
 
