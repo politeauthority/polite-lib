@@ -50,4 +50,28 @@ def celcius_to_fahrenheit(c_degrees: float, round_to: int = 1) -> float:
     return round(fahrenheit, round_to)
 
 
+def miles_to_kilometers(miles: float, round_to: int = 1) -> float:
+    """Convert a Miles into Kilometers.
+    :param miles (float): Miles to convert to Kilometers
+    :param round_to (int): Level to round the returned float to
+    :return (float): Kilometer converted value
+    :unit-test: test__miles_to_kilometers
+    """
+    standard = 1.609344
+    kilometers = miles * standard
+    return round(kilometers, round_to)
+
+
+def kilometers_to_miles(kilometers: float, round_to: int = 1) -> float:
+    """Convert a Kilometers into Miles.
+    :param miles (float): Kilometers to convert to Miles
+    :param round_to (int): Level to round the returned float to
+    :return (float): Miles converted value
+    :unit-test: test__kilometers_to_miles
+    """
+    standard = 1.609344
+    miles = kilometers / standard
+    return round(miles, round_to)
+
+
 # End File: politeauthority/polite-lib/src/polite-lib/utils/convert.py
