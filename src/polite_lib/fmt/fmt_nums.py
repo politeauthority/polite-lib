@@ -1,6 +1,9 @@
 """
+    Polite Lib
+    Utils
     Format Numbers
-    Polite Lib - Utils
+    Testing
+        Unit: polite-lib/unit/fmt/test_fmt_nums.py
 
 """
 import logging
@@ -10,8 +13,8 @@ def add_commas(value) -> str:
     """
     Args:
         value: The integer or float value to format.
-    Returns:
-        A string with commas every 3 digits.
+    :returns: A string with commas every 3 digits.
+    :unit-test: test__add_commas
     """
     if value <= 999:
         return str(value)
@@ -23,15 +26,10 @@ def add_commas(value) -> str:
     return formatted_value
 
 
-def fmt_num(value, round_to: int = 2) -> str:
-    if not value:
-        return ""
-    number_value = add_commas(value)
-    return number_value
-
-
 def fmt_currency(value: float, round_to: int = 2) -> str:
-    """Format a float value to a USD currency representation."""
+    """Format a float value to a USD currency representation.
+    :unit-test: test__fmt_currency
+    """
     if not value:
         logging.warning("fmt currency recieved null value")
         return ""
@@ -59,12 +57,13 @@ def fmt_currency(value: float, round_to: int = 2) -> str:
 
 def fmt_percentage(value: float, round_to: int = 2) -> str:
     """Format a percentage into a human friendly string, rounded to the desired level.
+    :unit-test: test__fmt_percentage
     """
     if not value:
         return None
     value = round(value, round_to)
-    value_str = str(value)
-    value_commas = add_commas(value)
+    value_str = add_commas(value)
+
     # Add a leading 0 to values under a dollar
     if value < 1:
         if "." in value_str:
@@ -72,7 +71,7 @@ def fmt_percentage(value: float, round_to: int = 2) -> str:
             if dot_position == 0:
                 value_str = "0" + value_str
     else:
-        value_str = value_commas
+        value_str = value_str
 
     if "." in value_str:
         dot_position = value_str.find(".")
@@ -80,7 +79,11 @@ def fmt_percentage(value: float, round_to: int = 2) -> str:
             value_str = value_str + "0"
     else:
         value_str = value_str + ".00"
+
+    if round_to == 0:
+        value_str = value_str[:value_str.find(".")]
+
     return value_str + "%"
 
 
-# End File: polite-lib/src/polite-lib/utils/fmt_numbers.py
+# End File: politeauthority/polite-lib/src/polite-lib/utils/fmt_numbers.py
