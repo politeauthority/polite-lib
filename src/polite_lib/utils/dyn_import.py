@@ -18,4 +18,13 @@ def get(module_name: str):
     return module
 
 
+def method(module, method_name: str):
+    """Dynamically return a method if it exists."""
+    if hasattr(module, method_name):
+        method = getattr(module, method_name)
+        return method()
+    else:
+        raise AttributeError(f"Method '{method_name}' not found in module '{module}'")
+
+
 # End File: politeauthority/polite-lib/src/polite-lib/utils/dynamic_import.py
