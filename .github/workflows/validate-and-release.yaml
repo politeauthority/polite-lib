@@ -50,8 +50,8 @@ jobs:
           # percentage=$(echo $total_line | grep -o '\d\{2\}%')
           # echo "**Test Coverage:** ${percentage}" >> $GITHUB_STEP_SUMMARY
 
-      - name: Publish
-        run: |
-          export POETRY_PYPI_TOKEN_PYPI="${{ secrets.PYPI_TOKEN }}"
-          /root/.local/bin/poetry build
-          /root/.local/bin/poetry publish
+      # - name: Publish
+      #   run: |
+      #     export POETRY_PYPI_TOKEN_PYPI="${{ secrets.PYPI_TOKEN }}"
+      #     /root/.local/bin/poetry build
+      #     /root/.local/bin/poetry publish

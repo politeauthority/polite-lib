@@ -1,6 +1,7 @@
 # Polite-Lib
 .DS_Store
 .vscode
+polite-lib.code-workspace
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
