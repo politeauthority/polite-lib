@@ -38,6 +38,8 @@ class PowerCost:
         return True
 
     def monthly_cost_variable(self, kwh_device: float) -> bool:
+        """Calculate the cost of a device hourly avg, daily and monthly. Assuming the device runs at at static 
+        KWH usage throughout the period. """
         price_var_low_per_hour = self.price_kwh(kwh_device, self.var_kwh_price_low)
         price_var_low_per_day = round((price_var_low_per_hour * self.var_low_hours_per_day), 12)
 
@@ -51,11 +53,16 @@ class PowerCost:
             price_var_low_per_day + price_var_mid_per_day + price_var_high_per_day)
         total_price_per_day = round(total_price_per_day, 4)
 
+        x_mid = (price_var_low_per_hour + price_var_mid_per_hour + price_var_high_per_hour) / 3
+
+        total_price_per_hour_avg = round(x_mid, 4)
+
         total_price_per_month = total_price_per_day * 31
 
         print("Variable")
-        print("\tper day:  %s" % total_price_per_day)
-        print("\tper month:  %s" % total_price_per_month)
+        print("\tPer Hour Avg\t%s" % total_price_per_hour_avg)
+        print("\tPer Day\t\t%s" % total_price_per_day)
+        print("\tPer Month\t%s" % total_price_per_month)
         return True
 
     def monthly_cost_static(self, kwh_device: float) -> bool:
@@ -65,9 +72,9 @@ class PowerCost:
 
         print("Static Pricing")
 
-        print("\tPer Hour:\t%s " % price_flat_per_hour)
-        print("\tPer Day:\t%s " % price_flat_per_day)
-        print("\tPer Month:\t%s " % price_flat_per_month)
+        print("\tPer Hour\t%s " % price_flat_per_hour)
+        print("\tPer Day\t\t%s " % price_flat_per_day)
+        print("\tPer Month\t%s " % price_flat_per_month)
         return True
 
     def price_kwh(self, kwh_usage: float, price_per_kwh: float, round_int: int = 4) -> float:
