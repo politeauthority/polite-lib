@@ -50,4 +50,15 @@ class TestFmtHtml:
         test_list = ["hello", "world"]
         assert fmt_html.unordered_list(test_list) == "<ul><li>hello</li><li>world</li></ul>"
 
+    # def test__ul_from_dict(self):
+    #     """Tests that create an html table from a dict.
+    #     :method: fmt_html.ul_from_dict()
+    #     """
+    #     test_dict_1 = {
+    #         "hello": "one"
+    #     } 
+    #     expected = "<ul><li>hello:one</li><ul>"
+    #     assert fmt_html.ul_from_dict(test_dict_1) == expected
+
+
 # End File: politeauthority/polite-lib/tests/unit/fmt/test_fmt_html.py

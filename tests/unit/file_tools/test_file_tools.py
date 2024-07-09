@@ -9,6 +9,11 @@ import pytest
 
 from polite_lib.file_tools import file_tools
 
+TEST_DATA_DIR = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)),
+    "../../data/"
+)
+
 
 class TestFileTools:
 
@@ -16,9 +21,10 @@ class TestFileTools:
         """Test can get a diretory's size in bytes.
         :method: file_tools.get_directory_size()
         """
-        directory_to_size = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)),
-            "../../data/")
+        directory_to_size = TEST_DATA_DIR
+        x = file_tools.get_directory_size(directory_to_size)
+        import ipdb; ipdb.set_trace()
+
         assert 10 == file_tools.get_directory_size(directory_to_size)
 
     def test__get_filename(self):

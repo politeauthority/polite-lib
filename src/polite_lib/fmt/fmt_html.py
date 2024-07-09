@@ -72,4 +72,19 @@ def unordered_list(the_list: list) -> str:
     html += "</ul>"
     return html
 
+
+# def ul_from_dict(the_dict: dict) -> str:
+#     """Create an 'infinately' set of html uls from a nested dictionatity.
+#     I literally don't know how to make this work, but I will.
+#     :unit-test: test__ul_from_dict
+#     """
+#     print(the_dict)
+#     for key, value in the_dict.items():
+#         key_tab = "<ul>{key}</ul>"
+
+#     ret_dict = {} 
+#     print(ret_dict)
+#     return True
+
+
 # End File: politeauthority/polite-lib/src/polite-lib/utils/fmt_html.py
