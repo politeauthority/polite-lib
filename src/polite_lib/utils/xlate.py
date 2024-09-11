@@ -316,4 +316,18 @@ def base64_encode(uncoded: str) -> str:
     base_bytes = base64.b64encode(str_bytes)
     return base_bytes.decode("ascii")
 
+
+def slugify(butterfly: str) -> str:
+    """Convert a pretty name into a url safe slug name for easier manipulation and keying.
+    :unit-test: test__slugify
+    """
+    if not butterfly:
+        return ""
+    slug = butterfly.lower()
+    chars_to_dash = ["/", "\\", " "]
+    for replace_char in chars_to_dash:
+        if replace_char in slug:
+            slug = slug.replace(replace_char, "-")
+    return slug
+
 # End File: politeauthority/polite-lib/src/utils/xlate.py

@@ -113,5 +113,14 @@ class TestUtilsXlate:
         """
         assert xlate.base64_encode("something to encode") == "c29tZXRoaW5nIHRvIGVuY29kZQ=="
 
+    def test__slugify(self):
+        """Test that we can turn a butterfly into a slug.
+        :method: xlate.slugify()
+        """
+        assert "hello-world" == xlate.slugify("hello world")
+        assert "hello-world" == xlate.slugify("Hello World")
+        assert "hello-world" == xlate.slugify("hello-world")
+        assert "hello-world" == xlate.slugify("hello/world")
+
 
 # End File: politeauthority/polite-lib/test/unit/utils/test_xlate.py
