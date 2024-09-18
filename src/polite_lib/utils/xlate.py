@@ -328,6 +328,9 @@ def slugify(butterfly: str) -> str:
     for replace_char in chars_to_dash:
         if replace_char in slug:
             slug = slug.replace(replace_char, "-")
+    chars_to_remove = ["!", "'", '"', "?", "#"]
+    for remove_char in chars_to_remove:
+        slug = slug.replace(remove_char, "")
     return slug
 
 # End File: politeauthority/polite-lib/src/utils/xlate.py

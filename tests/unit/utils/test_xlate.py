@@ -121,6 +121,9 @@ class TestUtilsXlate:
         assert "hello-world" == xlate.slugify("Hello World")
         assert "hello-world" == xlate.slugify("hello-world")
         assert "hello-world" == xlate.slugify("hello/world")
+        assert "hello-world" == xlate.slugify("hello/world")
+        assert "hello-world" == xlate.slugify("hello world!")
+        assert "hello-world" == xlate.slugify("#hello-world")
 
 
 # End File: politeauthority/polite-lib/test/unit/utils/test_xlate.py
