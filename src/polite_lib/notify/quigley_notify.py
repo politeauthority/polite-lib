@@ -31,7 +31,7 @@ def send(
             Example: !WVaUYDOloEvKklWuhG:squid-ink.us
     """
     if not BASIC_AUTH:
-        logging.ciritcal("Missing QUIGLEY_BASIC_AUTH")
+        logging.critical("Missing QUIGLEY_BASIC_AUTH")
         raise AttributeError("Missing Quigley Api basic authentication")
 
     if url:
