@@ -208,6 +208,27 @@ def convert_str_to_bool(value: str) -> bool:
             type(value)))
 
 
+def convert_str_to_int(value: str) -> bool:
+    """Convert a string value to an int value if one can be derrived.
+    :unit-test: TestXlate::test__convert_str_to_int
+    """
+    if not value:
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float):
+        new_value = int(value)
+        logging.warning("Value is type float, xlating: %s to %s" % (value, new_value))
+        return new_value
+    if not isinstance(value, str):
+        logging.warning("Cannot convert value %s of type %s to int" % (value, type(value)))
+        return None
+    if value.isdigit():
+        return int(value)
+    logging.error("Could not get an int value from original str: %s" % value)
+    return None
+
+
 def get_digest(image_str: str):
     """Extracts the digest from a docker-pullable string as given from the K8 api
     example image_str: docker-pullable://docker.io/politeauthority/pignus@sha256:\

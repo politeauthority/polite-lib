@@ -5,6 +5,8 @@
     Tests File: polite-lib/src/polite-lib/utils/xlate.py
 
 """
+import arrow
+
 from pytest import raises
 
 from polite_lib.utils import xlate
@@ -85,6 +87,17 @@ class TestUtilsXlate:
         assert not xlate.convert_str_to_bool(0)
         with raises(AttributeError):
             assert xlate.convert_str_to_bool("hello")
+
+    def test__convert_str_to_int(self):
+        """
+        :method: xlate.convert_str_to_int
+        """
+        assert not xlate.convert_str_to_int(None)
+        assert not xlate.convert_str_to_int(arrow.utcnow())
+        assert not xlate.convert_str_to_int("hello")
+        assert xlate.convert_str_to_int(1) == 1
+        assert xlate.convert_str_to_int("1") == 1
+        assert xlate.convert_str_to_int(1.123) == 1
 
     def test__rest_to_snake_case(self):
         """Test that we can convert rest case to snake case.
