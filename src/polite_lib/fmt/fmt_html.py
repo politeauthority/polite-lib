@@ -82,7 +82,7 @@ def unordered_list(the_list: list) -> str:
 #     for key, value in the_dict.items():
 #         key_tab = "<ul>{key}</ul>"
 
-#     ret_dict = {} 
+#     ret_dict = {}
 #     print(ret_dict)
 #     return True
 
