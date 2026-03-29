@@ -9,6 +9,7 @@ description = ""
 authors = ["Alix <me@politeauthority.io>"]
 readme = "README.md"
 packages = [{ include = "src/polite_lib" }]
+homepage = "https://github.com/politeauthority/polite-lib"
 
 [tool.poetry.dependencies]
 python = "^3.10.0"
@@ -19,7 +20,3 @@ glom = "23.5.0"
 minio = "7.2.7"
 requests = "2.32.2"
 rich = "13.7.1"
-
-[project.urls]
-Homepage = "https://github.com/politeauthority/polite-lib"
-Issues = "https://github.com/politeauthority/polite-lib/issues"
