@@ -8,7 +8,7 @@ version = "0.0.9.11"
 description = ""
 authors = ["Alix <me@politeauthority.io>"]
 readme = "README.md"
-packages = [{ include = "src/polite_lib" }]
+packages = [{ include = "polite_lib", from = "src" }]
 homepage = "https://github.com/politeauthority/polite-lib"
 
 [tool.poetry.dependencies]
